@@ -62,11 +62,11 @@ def get_color_for_attention_score(attention_score):
     Return a tuple of three integers representing a shade of gray for the
     given `attention_score`. Each value should be in the range [0, 255].
     """
-    
     channel_range = 255 # CONST
     
-    channel_value = round(channel_range * attention_score)
+    channel_value = round(channel_range * attention_score.numpy())
     return (channel_value, channel_value, channel_value)
+    
 
 
 
