@@ -1,4 +1,5 @@
 import sys
+import os
 import tensorflow as tf
 
 from PIL import Image, ImageDraw, ImageFont
@@ -81,12 +82,22 @@ def visualize_attentions(tokens, attentions):
     (starting count from 1).
     """
     # TODO: Update this function to produce diagrams for all layers and heads.
-    generate_diagram(
-        1,
-        1,
-        tokens,
-        attentions[0][0][0]
-    )
+    layers, heads = 12, 12
+    j = 0
+    for i in range(layers):
+        for k in range(heads):
+            generate_diagram(
+                layer_number= i + 1,
+                head_number= k + 1,
+                tokens= tokens,
+                attention_weights = attentions[i][j][k]
+            )
+    # generate_diagram(
+    #     1,
+    #     1,
+    #     tokens,
+    #     attentions[0][0][0]
+    # )
 
 
 def generate_diagram(layer_number, head_number, tokens, attention_weights):
