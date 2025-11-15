@@ -45,12 +45,14 @@ def get_mask_token_index(mask_token_id, inputs):
     Return the index of the token with the specified `mask_token_id`, or
     `None` if not present in the `inputs`.
     """
-    # TODO: Implement this function
-    print(inputs)
-    # for input in inputs:
-    #     if input == MASked_token:
-    #         then return index of this input
-    # return None
+    
+    for index, input_id in enumerate(inputs["input_ids"].numpy().tolist()[0]):
+        if input_id == mask_token_id:
+            return index
+    
+    return None
+    
+    
     
 
 
@@ -60,8 +62,11 @@ def get_color_for_attention_score(attention_score):
     Return a tuple of three integers representing a shade of gray for the
     given `attention_score`. Each value should be in the range [0, 255].
     """
-    # TODO: Implement this function
-    raise NotImplementedError
+    
+    channel_range = 255 # CONST
+    
+    channel_value = round(channel_range * attention_score)
+    return (channel_value, channel_value, channel_value)
 
 
 
